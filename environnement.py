@@ -7,6 +7,7 @@ class Environment:
         self.height = height
         self.agent_position = (0, 0)
         self.food_position = (random.randint(0, width - 1), random.randint(0, height - 1))
+        self.reward = 0
 
         pygame.init()
         self.cell_size = 20
@@ -46,8 +47,8 @@ class Environment:
     def calculate_reward(self):
         if self.agent_position == self.food_position:
             self.food_position = (random.randint(0, self.width - 1), random.randint(0, self.height - 1))
-            return 1
-        return 0
+            self.reward += 1 
+            print(self.reward)
 
 # Example usage
 if __name__ == "__main__":
