@@ -42,18 +42,29 @@ class Environment:
         pygame.draw.rect(self.screen, (255, 0, 0), food_rect)
 
         pygame.display.flip()
-        pygame.time.wait(500)
 
     def calculate_reward(self):
         if self.agent_position == self.food_position:
+            self.food_position = (random.randint(0, self.width - 1), random.randint(0, self.height - 1))
             return 1
         return 0
 
 # Example usage
 if __name__ == "__main__":
     env = Environment(25, 25)
-    env.render()
-    env.step('right')
-    env.render()
-    env.step('down')
-    env.render()
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_z:
+                    env.step('up')
+                elif event.key == pygame.K_s:
+                    env.step('down')
+                elif event.key == pygame.K_q:
+                    env.step('left')
+                elif event.key == pygame.K_d:
+                    env.step('right')
+                env.render()
+    pygame.quit()
