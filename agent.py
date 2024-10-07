@@ -1,5 +1,5 @@
 #Création des agents de la simulation
-
+import random
 # Définition de la classe
 class agent:
     def __init__(self, anger, speed, view):
@@ -8,7 +8,9 @@ class agent:
         self.view = 2
         self.XP = 20
 
-
+    def RandomWalk(self):
+        random_int = random.randint(1, 4)
+        return random_int
 
 
 '''
